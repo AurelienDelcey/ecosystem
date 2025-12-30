@@ -23,6 +23,12 @@ public class AnimalsManager {
 				.collect(Collectors.toList());
 	}
 	
+	public <T extends Animal> int getTotalPopulationOf(Class<T> type){
+		return getListOf(type).stream()
+				.mapToInt(Animal::getCurrentPopulation)
+				.sum();
+	}
+	
 	public Animal getOne(String species) {
 		return this.animalsList.stream()
 				.filter(i->i.getSpecies().equals(species))
@@ -54,7 +60,7 @@ public class AnimalsManager {
 		return getOne(name).getInitialPopulation();
 	}
 	
-	public void setInitialPopulation(String name, int newInitialPopulation) {
+	public void setInitialPopulationOf(String name, int newInitialPopulation) {
 		getOne(name).setInitialPopulation(newInitialPopulation);
 	}
 	
@@ -62,7 +68,7 @@ public class AnimalsManager {
 		return getOne(name).getCurrentPopulation();
 	}
 	
-	public void setCurrentPopulation(String name, int newCurrentPopulation) {
+	public void setCurrentPopulationOf(String name, int newCurrentPopulation) {
 		getOne(name).setCurrentPopulation(newCurrentPopulation);
 	}
 	

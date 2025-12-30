@@ -8,15 +8,15 @@ import model.*;
 
 public class simulation {
 	
-	private List<Animal> animalsList; //deviendra un DAO par la suite
+	private AnimalsManager animalsList;
 	
-	public simulation(List<Animal>animalsList) {
+	public simulation(AnimalsManager animalsList) {
 		this.animalsList = animalsList;
 	}
 	
 	public void advanceOneStep() {
 		Map<Animal, Integer> snapShot = new HashMap<>();
-		animalsList.stream()
+		animalsList.getListOf(Animal.class).stream()
 		.forEach(i->{
 			snapShot.put(i,(int)Math.round(i.getCurrentPopulation()+i.populationDelta(getPopulationInfluence(i))));	
 		});
@@ -40,9 +40,6 @@ public class simulation {
 	}
 	
 	private <T extends Animal> int getCountOf(Class<T> type){
-		return this.animalsList.stream()
-				.filter(type::isInstance)
-				.mapToInt(Animal::getCurrentPopulation)
-				.sum();
+		return animalsList.getTotalPopulationOf(type);
 	}
 }
