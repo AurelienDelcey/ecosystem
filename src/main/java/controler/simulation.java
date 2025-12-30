@@ -18,8 +18,7 @@ public class simulation {
 		Map<Animal, Integer> snapShot = new HashMap<>();
 		animalsList.stream()
 		.forEach(i->{
-			snapShot.put(i,(int)Math.round(i.getCurrentPopulation()+i.populationDelta(getPopulationInfluence(i))));
-			
+			snapShot.put(i,(int)Math.round(i.getCurrentPopulation()+i.populationDelta(getPopulationInfluence(i))));	
 		});
 		applySimulationStep(snapShot);
 	}

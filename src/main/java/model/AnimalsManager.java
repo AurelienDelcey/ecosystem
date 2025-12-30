@@ -4,15 +4,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AnimalsManager {
-	private List<Animal> animalsList;
+	private final List<Animal> animalsList;
 
 	public AnimalsManager(List<Animal> animalsList) {
 		this.animalsList = animalsList;
 	}
 	
-	public <T extends Animal> List<Animal> getListOf(Class<T> type){
+	public <T extends Animal> List<T> getListOf(Class<T> type){
 		return this.animalsList.stream()
 				.filter(type::isInstance)
+				.map(type::cast)
 				.collect(Collectors.toList());
 	}
 	
