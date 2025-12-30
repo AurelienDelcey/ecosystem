@@ -17,7 +17,7 @@ public abstract class Animal {
 		this.currentPopulation = initialPopulation;
 	}
 	
-	abstract double populationDelta(int modifyer);
+	public abstract double populationDelta(int modifyer);
 
 
 	public double getReproductionRate() {

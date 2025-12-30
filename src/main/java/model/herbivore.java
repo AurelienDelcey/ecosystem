@@ -7,7 +7,7 @@ public class herbivore extends Animal{
 	}
 
 	@Override
-	double populationDelta(int predatorPopulation) {
+	public double populationDelta(int predatorPopulation) {
 	    double delta = super.getCurrentPopulation() * (super.getReproductionRate() - super.getMortalityRate());
 	    double predatorFactor = 1.0;
 	    if (predatorPopulation > 0) {
